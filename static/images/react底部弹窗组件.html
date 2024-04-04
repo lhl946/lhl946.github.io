@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>初一蛙鸣 - 初一蛙鸣</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="初一蛙鸣-前端-小程序-vue-react,"> 
+    
+    <link rel="alternative" href="atom.xml" title="初一蛙鸣" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="初一蛙鸣 - 初一蛙鸣"/>
+    <meta name="twitter:description" content="初一蛙鸣-前端-小程序-vue-react,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="初一蛙鸣"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="初一蛙鸣 - 初一蛙鸣"/>
+    <meta property="og:description" content="初一蛙鸣-前端-小程序-vue-react,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">初一蛙鸣</span>
+    <div id="loader"></div>
+    <div id="single" class="page">
+    <div id="top">
+        <a class="iconfont icon-left image-icon" href="javascript:history.back()"></a>
+    </div>
+    <div class="section">
+        <div class="article">
+            <div class="main">
+                <div class="content">
+                
+                        <h3 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h3><p><img src="/images/20200709141237.png" alt=""></p>
+<h3 id="Popup-tsx"><a href="#Popup-tsx" class="headerlink" title="Popup.tsx"></a>Popup.tsx</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">import Taro, &#123; Component &#125; from &quot;@tarojs&#x2F;taro&quot;</span><br><span class="line">import &#123; View &#125; from &quot;@tarojs&#x2F;components&quot;</span><br><span class="line">import &quot;.&#x2F;Popup.less&quot;</span><br><span class="line"></span><br><span class="line">interface IProps &#123;</span><br><span class="line">  onClose?: (e) &#x3D;&gt; &#123;&#125;</span><br><span class="line">  title?: string</span><br><span class="line">  closeByOverlay?: boolean</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default class Popup extends Component&lt;IProps, &#123;&#125;&gt; &#123;</span><br><span class="line">  static defaultProps &#x3D; &#123;</span><br><span class="line">    closeByOverlay: true</span><br><span class="line">  &#125;</span><br><span class="line">  state &#x3D; &#123;</span><br><span class="line">    isOpened: false</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 点击蒙层</span><br><span class="line">  handleClose() &#123;</span><br><span class="line">    &#x2F;&#x2F; 允许蒙层关闭</span><br><span class="line">    this.props.closeByOverlay &amp;&amp; this.close()</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 有监听onclose方法</span><br><span class="line">    this.props.onClose &amp;&amp; this.props.onClose(false)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 打开</span><br><span class="line">  open() &#123;</span><br><span class="line">    this.setState(&#123;</span><br><span class="line">      isOpened: true</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 关闭</span><br><span class="line">  close() &#123;</span><br><span class="line">    this.setState(&#123;</span><br><span class="line">      isOpened: false</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    const &#123; title &#125; &#x3D; this.props</span><br><span class="line">    const &#123; isOpened &#125; &#x3D; this.state</span><br><span class="line">    return (</span><br><span class="line">      &lt;View className&#x3D;&#123;isOpened ? &quot;flolayout active&quot; : &quot;flolayout&quot;&#125;&gt;</span><br><span class="line">        &lt;View</span><br><span class="line">          className&#x3D;&quot;flolayout__overlay&quot;</span><br><span class="line">          onClick&#x3D;&#123;this.handleClose.bind(this, isOpened)&#125;</span><br><span class="line">        &gt;&lt;&#x2F;View&gt;</span><br><span class="line">        &lt;View className&#x3D;&quot;flolayout__container layout&quot;&gt;</span><br><span class="line">          &lt;View className&#x3D;&quot;layout-header&quot;&gt;&#123;title&#125;&lt;&#x2F;View&gt;</span><br><span class="line">          &lt;View className&#x3D;&quot;layout-body&quot;&gt;&#123;this.props.children&#125;&lt;&#x2F;View&gt;</span><br><span class="line">        &lt;&#x2F;View&gt;</span><br><span class="line">      &lt;&#x2F;View&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="popup-less"><a href="#popup-less" class="headerlink" title="popup.less"></a>popup.less</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line">.flolayout &#123;</span><br><span class="line">  position: fixed;</span><br><span class="line">  width: 100%;</span><br><span class="line">  height: 100%;</span><br><span class="line">  top: 0;</span><br><span class="line">  left: 0;</span><br><span class="line">  visibility: hidden;</span><br><span class="line">  z-index: 810;</span><br><span class="line">  transition: visibility 300ms cubic-bezier(0.36, 0.66, 0.04, 1);</span><br><span class="line">  &amp;.active &#123;</span><br><span class="line">    visibility: visible;</span><br><span class="line">    .flolayout__overlay &#123;</span><br><span class="line">      opacity: 1;</span><br><span class="line">    &#125;</span><br><span class="line">    .flolayout__container &#123;</span><br><span class="line">      transform: translate3d(0, 0, 0);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">.flolayout__overlay &#123;</span><br><span class="line">  top: 0;</span><br><span class="line">  left: 0;</span><br><span class="line">  width: 100%;</span><br><span class="line">  height: 100%;</span><br><span class="line">  position: absolute;</span><br><span class="line">  background-color: rgba(0, 0, 0, 0.3);</span><br><span class="line">  opacity: 0;</span><br><span class="line">  transition: opacity 150ms ease-in;</span><br><span class="line">&#125;</span><br><span class="line">.flolayout__container &#123;</span><br><span class="line">  position: absolute;</span><br><span class="line">  bottom: 0;</span><br><span class="line">  width: 100%;</span><br><span class="line">  &#x2F;&#x2F; min-height: 600px;</span><br><span class="line">  &#x2F;&#x2F; max-height: 950px;</span><br><span class="line">  background-color: #fff;</span><br><span class="line">  border-radius: 32px 32px 0px 0px;</span><br><span class="line">  transform: translate3d(0, 100%, 0);</span><br><span class="line">  transition: -webkit-transform 300ms cubic-bezier(0.36, 0.66, 0.04, 1);</span><br><span class="line">  transition: transform 300ms cubic-bezier(0.36, 0.66, 0.04, 1);</span><br><span class="line">  transition: transform 300ms cubic-bezier(0.36, 0.66, 0.04, 1),</span><br><span class="line">    -webkit-transform 300ms cubic-bezier(0.36, 0.66, 0.04, 1);</span><br><span class="line">&#125;</span><br><span class="line">.layout &#123;</span><br><span class="line">  display: block;</span><br><span class="line">  background-color: #fff;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.flolayout .layout-header &#123;</span><br><span class="line">  position: relative;</span><br><span class="line">  padding: 30px 0;</span><br><span class="line">  text-align: center;</span><br><span class="line">  .close-img &#123;</span><br><span class="line">    position: absolute;</span><br><span class="line">    right: 28px;</span><br><span class="line">    top: 36px;</span><br><span class="line">    width: 36px;</span><br><span class="line">    height: 36px;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">.flolayout .layout-header__title &#123;</span><br><span class="line">  overflow: hidden;</span><br><span class="line">  -o-text-overflow: ellipsis;</span><br><span class="line">  text-overflow: ellipsis;</span><br><span class="line">  white-space: nowrap;</span><br><span class="line">  color: #333;</span><br><span class="line">  font-size: 32px;</span><br><span class="line">  display: block;</span><br><span class="line">  padding-right: 80px;</span><br><span class="line">&#125;</span><br><span class="line">.flolayout .layout-header__icon &#123;</span><br><span class="line">  line-height: 1;</span><br><span class="line">  position: absolute;</span><br><span class="line">  top: 50%;</span><br><span class="line">  right: 18px;</span><br><span class="line">  padding: 10px;</span><br><span class="line">  transform: translate(0, -50%);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.flolayout .layout-body &#123;</span><br><span class="line">  font-size: 28px;</span><br><span class="line">  padding: 20px;</span><br><span class="line">  &#x2F;&#x2F; height: 602px;</span><br><span class="line">&#125;</span><br><span class="line">.flolayout .layout-body__content &#123;</span><br><span class="line">  position: relative;</span><br><span class="line">  height: 500px;</span><br><span class="line">  overflow-y: scroll;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">import Taro from &quot;@tarojs&#x2F;taro&quot;</span><br><span class="line">import &#123; View &#125; from &quot;@tarojs&#x2F;components&quot;</span><br><span class="line">import Popup from &quot;~&#x2F;components&#x2F;Popup&#x2F;Popup&quot;</span><br><span class="line"></span><br><span class="line">export default class Example extends Taro.Component &#123;</span><br><span class="line">  config: Taro.Config &#x3D; &#123;</span><br><span class="line">    navigationBarTitleText: &quot;测试页面&quot;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  popup: Popup</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;View&gt;</span><br><span class="line">        &lt;View</span><br><span class="line">          onClick&#x3D;&#123;() &#x3D;&gt; &#123;</span><br><span class="line">            this.popup.open()</span><br><span class="line">          &#125;&#125;</span><br><span class="line">        &gt;</span><br><span class="line">          展开</span><br><span class="line">        &lt;&#x2F;View&gt;</span><br><span class="line">        &lt;Popup</span><br><span class="line">          title&#x3D;&quot;标题&quot;</span><br><span class="line">          ref&#x3D;&#123;e &#x3D;&gt; &#123;</span><br><span class="line">            if (e) this.popup &#x3D; e</span><br><span class="line">          &#125;&#125;</span><br><span class="line">        &gt;</span><br><span class="line">          &lt;View&gt;传任意内容&lt;&#x2F;View&gt;</span><br><span class="line">          &lt;View&gt;传任意内容&lt;&#x2F;View&gt;</span><br><span class="line">          &lt;View&gt;传任意内容&lt;&#x2F;View&gt;</span><br><span class="line">          &lt;View&gt;传任意内容&lt;&#x2F;View&gt;</span><br><span class="line">        &lt;&#x2F;Popup&gt;</span><br><span class="line">      &lt;&#x2F;View&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

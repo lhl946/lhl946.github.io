@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>利用全局事件实现语音连续播放 - 初一蛙鸣</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="初一蛙鸣-前端-小程序-vue-react,一、效果图
+二、思路1、创建一个全局事件
+2、为每个播放控件添加一个唯一的ID
+3、每次实例化播放控件时就让ID自增1
+4、播放结束的时候emit一个事件“audioplay”，并把当前ID自增1携,"> 
+    
+    <link rel="alternative" href="atom.xml" title="初一蛙鸣" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="利用全局事件实现语音连续播放 - 初一蛙鸣"/>
+    <meta name="twitter:description" content="初一蛙鸣-前端-小程序-vue-react,一、效果图
+二、思路1、创建一个全局事件
+2、为每个播放控件添加一个唯一的ID
+3、每次实例化播放控件时就让ID自增1
+4、播放结束的时候emit一个事件“audioplay”，并把当前ID自增1携,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="初一蛙鸣"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="利用全局事件实现语音连续播放 - 初一蛙鸣"/>
+    <meta property="og:description" content="初一蛙鸣-前端-小程序-vue-react,一、效果图
+二、思路1、创建一个全局事件
+2、为每个播放控件添加一个唯一的ID
+3、每次实例化播放控件时就让ID自增1
+4、播放结束的时候emit一个事件“audioplay”，并把当前ID自增1携,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">初一蛙鸣</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://lhl946.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">利用全局事件实现语音连续播放</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">利用全局事件实现语音连续播放</h1>
+        <div class="stuff">
+            <span>七月 17, 2020</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6/" rel="tag">自定义事件</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E8%AF%AD%E9%9F%B3/" rel="tag">语音</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h3 id="一、效果图"><a href="#一、效果图" class="headerlink" title="一、效果图"></a>一、效果图</h3><p><img src="/static/images/202007171741.gif" alt=""></p>
+<h3 id="二、思路"><a href="#二、思路" class="headerlink" title="二、思路"></a>二、思路</h3><p>1、创建一个全局事件</p>
+<p>2、为每个播放控件添加一个唯一的ID</p>
+<p>3、每次实例化播放控件时就让ID自增1</p>
+<p>4、播放结束的时候emit一个事件“audioplay”，并把当前ID自增1携带出去</p>
+<p>5、每个播放控件都监听audioplay事件，如果audioplay事件携带的值，等于自身的ID，就调用自己的play方法</p>
+<h3 id="三、实现"><a href="#三、实现" class="headerlink" title="三、实现"></a>三、实现</h3><p>main.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Vue.prototype.$event = <span class="keyword">new</span> Vue()</span><br></pre></td></tr></table></figure>
+
+<p>AudioFile.vue</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;!-- 音乐播放器组件 --&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;audio&quot; @click&#x3D;&quot;isPlay ? pause() : play()&quot;&gt;</span><br><span class="line">        &lt;div class&#x3D;&quot;audio-btn pause&quot; v-if&#x3D;&quot;isPlay&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">        &lt;div class&#x3D;&quot;audio-btn&quot; v-else&gt;&lt;&#x2F;div&gt;</span><br><span class="line">        &lt;div class&#x3D;&quot;audio-middle&quot;&gt;</span><br><span class="line">            &lt;div class&#x3D;&quot;audio-progress&quot; :class&#x3D;&quot;isPlay ? &#39;playing&#39; : &#39;&#39;&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">        &lt;div class&#x3D;&quot;audio-second&quot;&gt;&#123;&#123;second&#125;&#125; &quot;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"></span><br><span class="line">let id &#x3D; 0</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">    name: &#39;AudioFile&#39;,</span><br><span class="line">    data()&#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            musicPlayer: null,</span><br><span class="line">            isPlay: false,</span><br><span class="line">            second: 0,</span><br><span class="line">            id:++id</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    props: &#123;</span><br><span class="line">        source: &#123;</span><br><span class="line">            type: String,</span><br><span class="line">            required: true</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    mounted()&#123;</span><br><span class="line">        const path_name &#x3D; this.source.replace(&#x2F;\.&#123;1&#125;[a-zA-Z0-9]&#123;1,&#125;$&#x2F;, &#39;&#39;);</span><br><span class="line">        this.second &#x3D; parseInt(path_name.match(&#x2F;\d&#123;1,&#125;$&#x2F;)) || &#39;n&#39;;</span><br><span class="line">        this.$event.$on(&#39;audioplay&#39;,this.onAudioPlay)</span><br><span class="line">    &#125;,</span><br><span class="line">    beforeDestroy()&#123;</span><br><span class="line">        this.$event.$off(&#39;audioplay&#39;,this.onAudioPlay)</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">        onAudioPlay(id)&#123;</span><br><span class="line">            if(this.id&#x3D;&#x3D;&#x3D;id)&#123;</span><br><span class="line">                &#x2F;&#x2F; 播放</span><br><span class="line">                this.play()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#x2F;&#x2F; 播放</span><br><span class="line">        play()&#123;</span><br><span class="line">            this.musicPlayer &#x3D; this.createPlayer();</span><br><span class="line">            this.isPlay &#x3D; true;</span><br><span class="line">            this.musicPlayer.play();</span><br><span class="line">        &#125;,</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 暂停</span><br><span class="line">        pause()&#123;</span><br><span class="line">            this.isPlay &#x3D; false;</span><br><span class="line">            this.musicPlayer.pause();</span><br><span class="line">        &#125;,</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 创建播放器</span><br><span class="line">        createPlayer()&#123;</span><br><span class="line">            &#x2F;&#x2F; 清除旧的播放器</span><br><span class="line">            const oldPlayer &#x3D; document.getElementById(&#39;music-player&#39;);</span><br><span class="line">            if(oldPlayer)&#123;</span><br><span class="line">                oldPlayer.stop();</span><br><span class="line">                document.body.removeChild(oldPlayer);</span><br><span class="line">            &#125;</span><br><span class="line">            &#x2F;&#x2F; 添加新的播放器</span><br><span class="line">            const musicPlayer &#x3D; document.createElement(&#39;audio&#39;);</span><br><span class="line">            musicPlayer.setAttribute(&#39;id&#39;, &#39;music-player&#39;);</span><br><span class="line">            musicPlayer.setAttribute(&#39;src&#39;, this.source);</span><br><span class="line">            musicPlayer.stop &#x3D; ()&#x3D;&gt;&#123; this.isPlay &#x3D; false; &#125;;</span><br><span class="line">            musicPlayer.addEventListener(&#39;ended&#39;, ()&#x3D;&gt;&#123; </span><br><span class="line">                this.isPlay &#x3D; false;</span><br><span class="line">                &#x2F;&#x2F; document.querySelectorAll(&#39;.audio&#39;)</span><br><span class="line">                this.$event.$emit(&#39;audioplay&#39;,this.id+1)</span><br><span class="line">             &#125;); </span><br><span class="line">            document.body.appendChild(musicPlayer);</span><br><span class="line">            return musicPlayer;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">.audio&#123;</span><br><span class="line">    display: flex;</span><br><span class="line">    align-items: center;</span><br><span class="line">    width: 225px;</span><br><span class="line">    height: 36px;</span><br><span class="line">    border-radius: 8px;</span><br><span class="line">    background-color: #fff;</span><br><span class="line">    border: thin solid #e9f0f0;</span><br><span class="line">    cursor: pointer;</span><br><span class="line">&#125;</span><br><span class="line">.audio-middle&#123;</span><br><span class="line">    flex-grow: 1;</span><br><span class="line">    position: relative;</span><br><span class="line">    height: 36px;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@keyframes play&#123;</span><br><span class="line">    from&#123; transform: translateX(0) &#125;</span><br><span class="line">    to&#123; transform: translate(50%) &#125;</span><br><span class="line">&#125;</span><br><span class="line">.audio-progress&#123;</span><br><span class="line">    content: &quot;&quot;;</span><br><span class="line">    position: absolute;</span><br><span class="line">    top: 0;</span><br><span class="line">    right: 0;</span><br><span class="line">    width: 280px;</span><br><span class="line">    height: 36px;</span><br><span class="line">    background: url(&quot;..&#x2F;assets&#x2F;ico_audio_progress.png&quot;) repeat-x center;</span><br><span class="line">    background-size: auto 32px;</span><br><span class="line">&#125;</span><br><span class="line">.audio-progress.playing&#123;</span><br><span class="line">    animation: play .5s linear infinite; </span><br><span class="line">&#125;</span><br><span class="line">.audio-btn&#123;</span><br><span class="line">    flex-shrink: 0;</span><br><span class="line">    margin: 0 10px;</span><br><span class="line">    width: 20px;</span><br><span class="line">    height: 36px;</span><br><span class="line">    background: url(&quot;..&#x2F;assets&#x2F;ico_audio_play.png&quot;) no-repeat center;</span><br><span class="line">    background-size: 16px 16px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.audio-btn.pause&#123;</span><br><span class="line">    background: url(&quot;..&#x2F;assets&#x2F;ico_audio_pause.png&quot;) no-repeat center;</span><br><span class="line">    background-size: 16px 16px;</span><br><span class="line">&#125;</span><br><span class="line">.audio-second&#123;</span><br><span class="line">    margin: 0 10px 0 5px;</span><br><span class="line">    flex-shrink: 0;</span><br><span class="line">    height: 36px;</span><br><span class="line">    line-height: 36px;</span><br><span class="line">    font-size: 14px;</span><br><span class="line">    color: #222;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

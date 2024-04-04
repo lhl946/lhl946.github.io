@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>react/react防淘宝评分组件 - 初一蛙鸣</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="初一蛙鸣-前端-小程序-vue-react,效果图
+StarScore.tsx1234567891011121314151617181920212223242526272829303132333435363738394041424344454,"> 
+    
+    <link rel="alternative" href="atom.xml" title="初一蛙鸣" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="react/react防淘宝评分组件 - 初一蛙鸣"/>
+    <meta name="twitter:description" content="初一蛙鸣-前端-小程序-vue-react,效果图
+StarScore.tsx1234567891011121314151617181920212223242526272829303132333435363738394041424344454,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="初一蛙鸣"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="react/react防淘宝评分组件 - 初一蛙鸣"/>
+    <meta property="og:description" content="初一蛙鸣-前端-小程序-vue-react,效果图
+StarScore.tsx1234567891011121314151617181920212223242526272829303132333435363738394041424344454,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">初一蛙鸣</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://lhl946.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">react/react防淘宝评分组件</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">react/react防淘宝评分组件</h1>
+        <div class="stuff">
+            <span>四月 04, 2024</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/react/" rel="tag">react</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E8%AF%84%E5%88%86/" rel="tag">评分</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h3 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h3><p><img src="/static/images/20200709173603.png" alt=""></p>
+<h3 id="StarScore-tsx"><a href="#StarScore-tsx" class="headerlink" title="StarScore.tsx"></a>StarScore.tsx</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line">import Taro from &quot;@tarojs&#x2F;taro&quot;</span><br><span class="line">import &#123; View &#125; from &quot;@tarojs&#x2F;components&quot;</span><br><span class="line">import ImageIcon from &quot;~&#x2F;components&#x2F;Image&#x2F;Icon&quot;</span><br><span class="line">import &quot;.&#x2F;StarScore.less&quot;</span><br><span class="line"></span><br><span class="line">interface Props &#123;</span><br><span class="line">  &#x2F;**</span><br><span class="line">   * 分数</span><br><span class="line">   *&#x2F;</span><br><span class="line">  score: number</span><br><span class="line"></span><br><span class="line">  &#x2F;**</span><br><span class="line">   * 分数改变事件</span><br><span class="line">   *&#x2F;</span><br><span class="line">  onChange?: (score: number) &#x3D;&gt; void</span><br><span class="line"></span><br><span class="line">  &#x2F;**</span><br><span class="line">   * 图标大小</span><br><span class="line">   *&#x2F;</span><br><span class="line">  size?: number</span><br><span class="line"></span><br><span class="line">  &#x2F;**</span><br><span class="line">   * 最多几颗星星</span><br><span class="line">   *&#x2F;</span><br><span class="line">  max?: number</span><br><span class="line"></span><br><span class="line">  &#x2F;**</span><br><span class="line">   * 能不能点击</span><br><span class="line">   *&#x2F;</span><br><span class="line">  complete?: boolean</span><br><span class="line"></span><br><span class="line">  &#x2F;**</span><br><span class="line">   * 是否显示tip</span><br><span class="line">   *&#x2F;</span><br><span class="line">  showTip?: boolean</span><br><span class="line"></span><br><span class="line">  &#x2F;**</span><br><span class="line">   * tip数组，长度与max对应</span><br><span class="line">   *&#x2F;</span><br><span class="line">  tips?: Array&lt;string&gt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const MAX &#x3D; 5</span><br><span class="line">export default class StarScore extends Taro.Component&lt;Props&gt; &#123;</span><br><span class="line">  static defaultProps &#x3D; &#123;</span><br><span class="line">    complete: true</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  static externalClasses &#x3D; [&quot;item-class&quot;, &quot;container-class&quot;]</span><br><span class="line"></span><br><span class="line">  onChange(score: number) &#123;</span><br><span class="line">    if (this.props.onChange &amp;&amp; !this.props.complete) this.props.onChange(score)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    let &#123; score &#125; &#x3D; this.props</span><br><span class="line">    const &#123;</span><br><span class="line">      size &#x3D; 16,</span><br><span class="line">      max &#x3D; MAX,</span><br><span class="line">      tips &#x3D; [&quot;非常差&quot;, &quot;差&quot;, &quot;一般&quot;, &quot;好&quot;, &quot;非常好&quot;],</span><br><span class="line">      showTip &#x3D; false</span><br><span class="line">    &#125; &#x3D; this.props</span><br><span class="line">    score &#x3D; Math.floor(score)</span><br><span class="line">    return (</span><br><span class="line">      &lt;View className&#x3D;&quot;container container-class&quot;&gt;</span><br><span class="line">        &#123;new Array(max).fill(0).map((_item: number, key: number) &#x3D;&gt; &#123;</span><br><span class="line">          return (</span><br><span class="line">            &lt;View</span><br><span class="line">              key&#x3D;&#123;&#96;score-$&#123;key&#125;&#96;&#125;</span><br><span class="line">              className&#x3D;&quot;item item-class&quot;</span><br><span class="line">              onClick&#x3D;&#123;this.onChange.bind(this, key + 1)&#125;</span><br><span class="line">            &gt;</span><br><span class="line">              &#123;score &gt;&#x3D; key + 1 ? (</span><br><span class="line">                &lt;ImageIcon</span><br><span class="line">                  data-key&#x3D;&#123;key + 1&#125;</span><br><span class="line">                  data-score&#x3D;&#123;score&#125;</span><br><span class="line">                  name&#x3D;&quot;StarChecked&quot;</span><br><span class="line">                  size&#x3D;&#123;size&#125;</span><br><span class="line">                &#x2F;&gt;</span><br><span class="line">              ) : (</span><br><span class="line">                &lt;ImageIcon</span><br><span class="line">                  data-key&#x3D;&#123;key + 1&#125;</span><br><span class="line">                  data-score&#x3D;&#123;score&#125;</span><br><span class="line">                  name&#x3D;&quot;Star&quot;</span><br><span class="line">                  size&#x3D;&#123;size&#125;</span><br><span class="line">                &#x2F;&gt;</span><br><span class="line">              )&#125;</span><br><span class="line">            &lt;&#x2F;View&gt;</span><br><span class="line">          )</span><br><span class="line">        &#125;)&#125;</span><br><span class="line">        &#123;showTip &amp;&amp; &lt;View&gt;&#123;tips[score - 1]&#125;&lt;&#x2F;View&gt;&#125;</span><br><span class="line">      &lt;&#x2F;View&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="StarScore-less"><a href="#StarScore-less" class="headerlink" title="StarScore.less"></a>StarScore.less</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">24px</span>;</span><br><span class="line"></span><br><span class="line">  <span class="selector-class">.item</span> &#123;</span><br><span class="line">    <span class="attribute">margin-right</span>: <span class="number">7px</span>;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line"></span><br><span class="line">    <span class="selector-tag">&amp;</span><span class="selector-pseudo">:last-child</span> &#123;</span><br><span class="line">      <span class="attribute">margin-right</span>: <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">import Taro from &quot;@tarojs&#x2F;taro&quot;</span><br><span class="line">import &#123; View &#125; from &quot;@tarojs&#x2F;components&quot;</span><br><span class="line">import StarScore from &quot;~&#x2F;components&#x2F;StarScore&#x2F;StarScore&quot;</span><br><span class="line"></span><br><span class="line">interface Props &#123;&#125;</span><br><span class="line"></span><br><span class="line">export default class Example extends Taro.Component&lt;Props&gt; &#123;</span><br><span class="line">  config: Taro.Config &#x3D; &#123;</span><br><span class="line">    navigationBarTitleText: &quot;测试页面&quot;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  state &#x3D; &#123;</span><br><span class="line">    score: 4</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    const &#123; score &#125; &#x3D; this.state</span><br><span class="line">    return (</span><br><span class="line">      &lt;View&gt;</span><br><span class="line">        &lt;StarScore</span><br><span class="line">          score&#x3D;&#123;score&#125;</span><br><span class="line">          showTip</span><br><span class="line">          complete&#x3D;&#123;false&#125;</span><br><span class="line">          size&#x3D;&#123;25&#125;</span><br><span class="line">          onChange&#x3D;&#123;val &#x3D;&gt; &#123;</span><br><span class="line">            this.setState(&#123;</span><br><span class="line">              score: val</span><br><span class="line">            &#125;)</span><br><span class="line">          &#125;&#125;</span><br><span class="line">        &#x2F;&gt;</span><br><span class="line">      &lt;&#x2F;View&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>
